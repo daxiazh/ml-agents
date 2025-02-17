@@ -78,7 +78,7 @@ class DQNOptimizer(TorchOptimizer):
             observation_specs=policy.behavior_spec.observation_specs,
             network_settings=policy.network_settings,
             action_spec=policy.behavior_spec.action_spec,
-        )
+        ).to(default_device())
         ModelUtils.soft_update(self.policy.actor, self.q_net_target, 1.0)
 
         self.q_net_target.to(default_device())
